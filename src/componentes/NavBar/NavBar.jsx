@@ -15,8 +15,8 @@ const NavBar = () => {
           <li>Libros</li>
           <li>Mangas</li>
           <li>Comics</li>
-          <li>Musica</li>
           <li>Articulos</li>
+          <li>Novedades</li>
         </ul>
       </nav>
       <CartWidget/>
