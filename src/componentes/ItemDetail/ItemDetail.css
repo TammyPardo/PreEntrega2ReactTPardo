@@ -18,13 +18,13 @@
   }
   
   .infoDetalle img {
-    width: 80%;
+    width: 50%;
     max-height: 30rem;
     object-fit: contain;
   }
   
   .textoDetalle {
-    width: 70%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
