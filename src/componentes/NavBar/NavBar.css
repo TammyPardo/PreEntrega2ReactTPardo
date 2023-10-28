@@ -1,35 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: #b97d99;
-    color: rgb(12, 0, 0);
-  }
-  
-  header nav ul {
-    display: flex;
-    list-style: none;
-  }
-  
-  header nav ul li {
-    cursor: pointer;
-    margin: 0 1rem;
-    font-family: 'Times New Roman', Times, serif;
-  }
-  
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-family: "Cinzel";
-  }
-  
-  .brand h1 {
-    font-size: 1.5rem;
-    letter-spacing: 0.2rem;
-  }
-  
-  .brand img {
-    height: 5rem;
-  }
+  width: 100%;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: #b97d99;
+}
+
+header a {
+  text-decoration: none;
+  color: #000000;
+}
+
+header nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+}
+
+header nav ul li {
+  margin: 0 2rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  font-family: "Cinzel";
+}
+
+.brand h1 {
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+  color: black;
+}
+
+.brand img {
+  height: 4rem;
+}

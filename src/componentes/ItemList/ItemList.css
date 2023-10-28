@@ -1,0 +1,13 @@
+.ItemList {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: space-evenly;
+  }
+  
+  .ItemList h2 {
+    width: 100%;
+    text-align: center;
+  }
+

@@ -75,7 +75,23 @@ button:focus-visible {
   box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+  background-color: #727171;
+  width: 0.7rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #fefefe;
+  border-radius: 0.2rem;
+}
+
 body {
   background-color:  #747a78;
   color: #000000;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

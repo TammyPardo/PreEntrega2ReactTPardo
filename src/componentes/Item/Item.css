@@ -1,0 +1,33 @@
+.Item{
+    width: 17rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #a7a4a4;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    
+  }
+  
+  .Item h4{
+    margin: 0;
+    text-align: center;
+    font-family: 'Cinzel', sarif;
+    font-weight: lighter;
+  }
+  
+  .Item img{
+    width: 212px;
+    height: 308px;
+  }
+  
+  .Item button {
+    background-color: #b97d99;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 0.3rem;
+  }

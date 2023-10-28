@@ -1,25 +1,30 @@
 import React from 'react'
-import CartWidget from '../CartWidget/CartWidget'
+import CartWidget from "../CartWidget/CartWidget"
+import BarraBusqueda from '../BarraBusqueda/BarraBusqueda'
+import { Link } from 'react-router-dom'
 import "./NavBar.css"
-import imagen from "./logo.png"
+
+
 
 const NavBar = () => {
   return (
     <header className='navBar'>
-      <div className='brand'>
-        <img src={imagen} alt="Logo de la página" />
-        <h1>Libreria Koneko </h1>
-      </div>
+      <Link to="/">
+        <div className='brand'>
+          <img src={"../logo.png"} alt="Logo de la página" />
+          <h1>Libreria Koneko </h1>
+        </div>
+      </Link>
       <nav>
         <ul className='categorias'>
-          <li>Libros</li>
-          <li>Mangas</li>
-          <li>Comics</li>
-          <li>Articulos</li>
-          <li>Novedades</li>
+          <Link to="/categoria/libros" ><li>LIBROS</li></Link>
+          <Link to="/categoria/mangas" ><li>MANGAS</li></Link>
+          <Link to="/categoria/comics" ><li>COMICS</li></Link>
+          <Link to="/categoria/agendas" ><li>AGENDAS</li></Link>
         </ul>
+        <BarraBusqueda />
       </nav>
-      <CartWidget/>
+      <Link to="/carrito+de+compras"><CartWidget /></Link>
     </header>
   )
 }
