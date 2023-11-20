@@ -1,25 +1,34 @@
-import { useState, useEffect, useRef } from "react";
-import { getProductos } from "../../asyncmock";
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import "./BarraBusqueda.css";
+import { db } from '../../services/firebase/firebaseConfig'
+import { collection, getDocs} from 'firebase/firestore'
 
 const BarraBusqueda = () => {
-  useEffect(() => {
-    getProductos()
-    .then(response => setProductos(response))
-  }, [])
-
   const [busqueda, setBusqueda] = useState("");
   const [productos, setProductos] = useState([]);
   const [mostrarResultados, setMostrarResultados] = useState(false);
   const containerBusquedaRef = useRef(null);
-  const location = useLocation()
+ const location = useLocation()
+
+  useEffect(() => {
+    const misProductos = collection(db, "misProductos");
+
+    getDocs(misProductos)
+      .then(response => {
+        const nuevosProductos = response.docs.map(doc => {
+          const data = doc.data()
+          return {id: doc.id, ...data}
+        })
+        setProductos(nuevosProductos)
+      })
+      .catch(error => console.log("Se produjo el error", error))
+  }, [])
+
 
   const filtroDeProductos = productos.filter((item) =>
-    item.nombre?.toLowerCase().includes(busqueda?.toLowerCase()) 
+    item.nombre?.toLowerCase().includes(busqueda?.toLowerCase())
   );
-
-  
 
   useEffect(() => {
     const handleClickAfuera = (e) => {
@@ -36,10 +45,10 @@ const BarraBusqueda = () => {
     };
   }, []);
 
-  useEffect (() => {
-    setBusqueda("");
-    setMostrarResultados(false)
-  }, [location.pathname])
+useEffect (() => {
+setBusqueda("");
+setMostrarResultados(false)
+}, [location.pathname])
 
   const handleOnChange = (e) => {
     setBusqueda(e.target.value);

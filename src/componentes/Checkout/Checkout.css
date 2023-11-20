@@ -1,0 +1,20 @@
+.Checkout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .Checkout button {
+    background-color: #f7f7f1;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    color: #b97d99;
+    cursor: pointer;
+    border-radius: 0.3rem;
+  }
+  
+  .link a{
+    text-decoration: none;
+    color: #b97d99;
+  }

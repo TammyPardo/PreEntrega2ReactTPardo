@@ -1,0 +1,35 @@
+.CrearUsuario form {
+    display :flex;
+    flex-direction :column;
+    gap: 0.5rem;
+  }
+  
+  .CrearUsuario form h3 {
+    margin-bottom: 1rem;
+    font-weight: lighter;
+    letter-spacing: 0.4rem;
+  }
+  
+  .CrearUsuario form div p {
+    color: #b30053;
+    font-weight: lighter;
+    letter-spacing: 0.1rem;
+    margin-top: 0.4rem;
+  }
+  
+  .CrearUsuario form div input {
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: none;
+    margin-top: 0.5rem;
+  }
+  
+  .CrearUsuario form button {
+    background-color: #f7f7f1;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    color: #b97d99;
+    cursor: pointer;
+    border-radius: 0.3rem;
+  }

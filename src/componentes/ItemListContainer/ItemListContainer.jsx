@@ -1,28 +1,43 @@
 import React from 'react'
-import { useState, useEffect } from "react"
-import { getProductos, getProductosByCategory } from '../../asyncmock'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import "./ItemListContainer.css"
 import ItemList from '../ItemList/ItemList'
+import { db } from "../../services/firebase/firebaseConfig"
+import { collection, getDocs, query, where } from 'firebase/firestore'
 
-const ItemListContainer = ({ greetings }) => {
+
+const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
   const {categoria} = useParams();
 
+  console.log('categoria ::: ', categoria);
+
   useEffect(() => {
-    const productos = categoria ? getProductosByCategory : getProductos;
-    productos(categoria)
-      .then(response => { 
-        setProductos(response);
-        categoria ? document.title = `Libreria Koneko  ${response[0].categoria.toUpperCase()}` : document.title = "Libreria Koneko" ;
+    const misProductos = categoria 
+                          ? query(collection(db, "misProductos"), where("categoria", "==", categoria)) 
+                          : collection(db, "misProductos");
+
+    getDocs(misProductos)
+      .then(response => {
+        const nuevosProductos = response.docs.map(doc => {
+          const data = doc.data()
+          return {id: doc.id, ...data}
         })
-      .catch(error => { console.log(error) })
+
+        setProductos(nuevosProductos);
+      })
+      .catch(error => console.log("Se produjo el error", error))
   }, [categoria])
 
   return (
     <main>
-      <h2 style={{ textAlign: "center"}}> {categoria ? categoria : greetings} </h2>
-      <ItemList productos={productos} titulo={categoria ? undefined : <h2>Productos</h2>}/>
+      {
+        categoria &&
+          <h2 style={{ textAlign: "center"}}> {categoria} </h2> 
+      } 
+
+      <ItemList productos={productos} titulo={!categoria && <h2>Productos</h2>}/>
     </main>
 
   )

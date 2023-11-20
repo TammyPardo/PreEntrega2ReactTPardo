@@ -1,22 +1,17 @@
-* {
-  margin: 0;
-  padding: 0;
-  /* box-sizing: border-box; */
-}
-
 header {
   width: 100%;
   display: flex;
-  position: fixed;
-  align-items :end;
+  
+  align-items: center;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 1rem;
   background-color: #b97d99;
+  border-bottom: 1px solid  #383e3c;
 }
 
 header a {
   text-decoration: none;
-  color: #000000;
+  color: #0a0a0a;
 }
 
 header nav {
@@ -32,16 +27,16 @@ header nav ul {
 }
 
 header nav ul li {
-  margin: 0 2rem;
+  margin: 0 1rem;
   font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
   font-family: "Cinzel";
+  width: 18rem;
 }
 
 .brand h1 {
@@ -51,5 +46,80 @@ header nav ul li {
 }
 
 .brand img {
-  height: 4rem;
+  height: 5rem;
+}
+
+.gridNav {
+  display: grid;
+  grid-template-areas:  "categoria carrito"
+                        ".          menu";
+  grid-template-columns: 4fr 1fr;
+  width: 100%;
+}
+
+.categoria {
+  grid-area: categoria;
+  justify-self: center;
+}
+
+.carrito {
+  grid-area: carrito;
+  align-self: center;
+  justify-self: end;
+}
+
+.menu {
+  grid-area: menu;
+  display: none;
+}
+
+@media (width <= 800px) {
+
+  header nav ul li {
+    margin: 0 0.5rem;
+  }
+
+  .menu{
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top: 2.5rem;
+    right: 2rem;
+  }
+
+  .navBar {
+    max-height: 113px;
+  }
+
+  .categoria{
+    width: 90%;
+  }
+
+  .categorias{
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .gridNav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    top: 7rem;
+    right: 0;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.4);
+    padding-bottom: 0rem;
+    max-height: 0;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+  }
+
+  .mostrar{
+    background-color: #f7f7f1;
+    max-height: 10rem;
+    padding-bottom: 1rem;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  }
 }
