@@ -10,7 +10,6 @@ Currently, two official plugins are available:
 E-Commerce Libreria Koneko
 Este es un proyecto de ecommerce básico que se utiliza para el curso de React.
 
-Deploy
 ----
 Tecnologías utilizadas
 Vite
