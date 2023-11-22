@@ -29,19 +29,24 @@ const Checkout = () => {
       <h2>Checkout</h2>
       <div className='Checkout'>
         {
-          carrito.map(item => <p key={item.item.id}>{item.item.nombre} x {item.cantidad}</p>)
+          carrito.map(item => <p key={item.item.id}>{item.item.nombre} - CANTIDAD: {item.cantidad}</p>)
         }
+        
         <p>Total de productos: {cantidadTotal}</p>
         <p>Total: ${total}</p>
         {usuario
           ? <FinalizarCompra {...usuario} />
           : <>
-            <p>Para finalizar la compra debes</p>
+            <h4>
             <div className="IniciarCerrarSesion link">
-              <Link to="/login">Iniciar Sesion</Link>
-              <p> - </p>
-              <Link to="/crear+usuario">Crear Usuario</Link>
+            <p> Para finalizar la compra debes: </p>
+               <Link to="/crear+usuario">Crear Usuario</Link>
+               <p> | | </p>
+               <Link to="/login">Iniciar Sesión</Link>
+              <p></p>
+              <p></p>
             </div>
+            </h4>
           </>
         }
       </div>

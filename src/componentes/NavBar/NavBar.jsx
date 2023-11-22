@@ -59,8 +59,8 @@ setMostrarMenu(false)
           <BarraBusqueda />
         </nav>
         <div>
-          <IniciarCerrarSesion/>
-          <Link to="/carrito+de+compras" className={`carrito`}><CartWidget /></Link>
+          <h4><IniciarCerrarSesion/></h4>
+          <Link to="/carrito+de+compras" className={`carrito`}><CartWidget /></Link>       
         </div>
 
       </div>

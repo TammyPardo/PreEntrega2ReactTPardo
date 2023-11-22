@@ -1,4 +1,5 @@
 import { auth, db } from "../../services/firebase/firebaseConfig"
+import { addDoc, collection } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { setDoc, doc } from "firebase/firestore"
 import { useState } from "react"
@@ -16,24 +17,28 @@ const CrearUsuario = () => {
   const [email, setEmail] = useState(null)
   const [confirmacionEmail, setConfirmacionEmail] = useState(null)
   const [direccion, setDireccion] = useState(null)
- 
 
   const [errorVacio, setErrorVacio] = useState(null)
-  //const [errorEmail, setErrorEmail] = useState(null)
+  const [errorEmail, setErrorEmail] = useState(null)
   const [errorPassword, setErrorPassword] = useState(null)
 
   const navigate = useNavigate()
 
-  const crearUsuario = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!nombre || !apellido || !email || !direccion || !password || !confirmacionPassword) {
+    if (!nombre || !apellido || !email || !confirmacionEmail || !direccion || !password || !confirmacionPassword) {
       setErrorVacio("El campo esta vacio!")
       return;
     }
 
+    if (email !== confirmacionEmail) {
+      setErrorEmail("El email no coinciden!")
+      return;
+    }
+
     if (password !== confirmacionPassword) {
-      setErrorPassword("Las contraseñas no coinciden!")
+      setErrorPassword("La contraseña no coinciden!")
       return;
     }
 
@@ -44,8 +49,11 @@ const CrearUsuario = () => {
       telefono,
       direccion
     }
+    const collectionRef = collection(db, "usuarios");
+    const docRef = await addDoc(collectionRef, nuevoUsuario);
+    console.log("The new ID is: " + docRef.id);
 
-    await createUserWithEmailAndPassword(auth, email, password)
+       await createUserWithEmailAndPassword(auth, email, password)
       .then((response) => { 
         setDoc(doc(db, "usuarios", `${response.user.uid}`), nuevoUsuario)
         navigate(-1)
@@ -57,7 +65,7 @@ const CrearUsuario = () => {
   return (
     <main className='CrearUsuario'>
       <h2>Crear Usuario</h2>
-      <form onSubmit={crearUsuario}>
+      <form onSubmit={handleSubmit}>
         <h3>Datos para crear un nuevo usuario</h3>
 
         <div>
@@ -86,6 +94,13 @@ const CrearUsuario = () => {
         </div>
 
         <div>
+          <label htmlFor="confirmacionEmail">Confirmar email: </label>
+          <input type="email" id="confirmacionEmail" onChange={(e) => setConfirmacionEmail(e.target.value)} />
+          {email !== confirmacionEmail ? <p>{errorEmail}</p> : ""}
+          {!confirmacionEmail ? <p>{errorVacio}</p> : ""}
+        </div>
+
+        <div>
           <label htmlFor="password">Contraseña: </label>
           <input type="password" id="password" onChange={(e) => setPassword(e.target.value)} />
           {password !== confirmacionPassword ? <p>{errorPassword}</p> : ""}
@@ -104,7 +119,6 @@ const CrearUsuario = () => {
           <input type="text" id="direccion" onChange={(e) => setDireccion(e.target.value)} />
           {!direccion ? <p>{errorVacio}</p> : ""}
         </div>
-
         <button type="submit">Crear Usuario</button>
       </form>
     </main>

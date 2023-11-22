@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import "./FinalizarCompra.css"
 
+
 const FinalizarCompra = ({ nombre, apellido, email, direccion }) => {
 
   const { carrito, vaciarCarrito, total, cantidadTotal } = useContext(CarritoContext)
@@ -35,7 +36,7 @@ const FinalizarCompra = ({ nombre, apellido, email, direccion }) => {
 
     Promise.all(
       nuevaOrden.productos.map(async (item) => {
-        const productoRef = doc(db, "inventario", `${item.id}`);
+        const productoRef = doc(db, "misProductos", `${item.id}`);
         const productoDoc = await getDoc(productoRef);
         const stockActual = productoDoc.data().stock;
         await updateDoc(productoRef, { stock: stockActual - item.cantidad })

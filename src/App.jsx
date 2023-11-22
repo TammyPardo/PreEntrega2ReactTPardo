@@ -10,6 +10,7 @@ import Checkout from './componentes/Checkout/Checkout'
 import Login from './componentes/Login/Login'
 import CrearUsuario from './componentes/CrearUsuario/CrearUsuario'
 import Home from './componentes/Home/Home'
+import FinalizarCompra from './componentes/FinalizarCompra/FinalizarCompra'
 
 function App() {
   
@@ -50,6 +51,7 @@ function App() {
             <Route path='/checkout' element={<Checkout />}/>
             <Route path='/login' element={<Login />} />
             <Route path='/crear+usuario' element={<CrearUsuario/>}/>
+            <Route path='/finalizarCompra' element={<FinalizarCompra />} />
             <Route path='*' element={<main><h2></h2></main>} />
           </Routes>
         
